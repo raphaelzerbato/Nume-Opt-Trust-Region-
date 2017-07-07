@@ -3,12 +3,14 @@ close all;
 clc;
 %%
 %%%%% Paramètres initiaux
-% 'a' est la matrice de transition initiale 
-% 'moyenne' est le vecteur de moyennes initiales des deux densitésnormales 
-% 'etype' est le vecteur d'écart-types des deux lois normales initiales
-% 'pi' est la probabilité initiale régime 1 ou régime 2 
-% N est le nombre de régimes utilisés
-% maxit est le nombre d'itérations souhaité pour le modèle
+% Le modèle estime deux régimes distinct utilisant des lois d'émission
+% normales à chaque régime.
+% 'a' --> est la matrice de transition initiale 
+% 'moyenne' --> est le vecteur de moyennes initiales des deux densitésnormales 
+% 'etype' --> est le vecteur d'écart-types des deux lois normales initiales
+% 'pi' --> est la probabilité initiale régime 1 ou régime 2 
+% maxit --> est le nombre d'itérations souhaité pour le modèle
+% o est le vecteur de données desquelles sont estimés les régimes
 
 a = [0.50,0.50;0.50,0.50];
 
