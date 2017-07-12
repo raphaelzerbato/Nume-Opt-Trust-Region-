@@ -277,13 +277,13 @@ set(gca, 'FontSize', 8)
 set(gca,'XTick',[]);
 caxis([0 1])
 drawnow
-title('Observations: première itération','FontSize',8)
+title('Observations: premiÃ¨re itÃ©ration','FontSize',8)
 caxis([0 1])
 drawnow
 hold off
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 ème pass %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2 Ã¨me pass %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % alpha pass 2
 f_1 = ESN(o(1,1),mu(1,1),sigma(1,1),p(1,1));
@@ -486,7 +486,7 @@ figure;
          hold off
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 ème pass %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% 3 Ã¨me pass %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Leme pass
 for L= 2:maxit
@@ -717,7 +717,7 @@ for L= 2:maxit
              set(gca,'XTick',[]);
              caxis([0 1])
              drawnow
-             title('Observations: dernière itération','FontSize',8)
+             title('Observations: derniÃ¨re itÃ©ration','FontSize',8)
              hold off
      end
 end
@@ -744,7 +744,7 @@ hold off
 
 %% graf de verification 
 
-%densité gb2
+%densitÃ© gb2
 a2= xfinal2(1,1);
 b2 =xfinal2(1,2);
 p2= xfinal2(1,3);
@@ -766,7 +766,7 @@ set(gca, 'FontSize', 8)
 ylabel('density')
 xlabel('observation en million')
 hold off
-title('Donnée et densité', 'FontSize', 8)
+title('DonnÃ©e et densitÃ©', 'FontSize', 8)
 hold off
 
 
@@ -777,7 +777,7 @@ subplot(2,2,1)
 hold on
 ezplot(@(z)(taille(1,1)*ESN(z,mu(1,1),sigma(1,1),p(1,1))...
             +taille(2,1)*((a2*z.^(a2*p2-1))./(b2^(a2*p2)*(gamma(p2)*gamma(q2)/gamma(p2+q2))*(1+(z/b2).^a2).^(p2+q2)))),[0,1000,0,0.01]);
-title('Fonction de densité', 'FontSize', 8)
+title('Fonction de densitÃ©', 'FontSize', 8)
 set(gca, 'FontName', 'Arial')
 set(gca, 'FontSize', 8)
 ylabel('density')
@@ -785,7 +785,7 @@ xlabel('observation en million')
 hold off
 
 
-%% influence des PDF Les deux CDF sont comparés   
+%% influence des PDF Les deux CDF sont comparÃ©s   
 %%% construciton de la CDF GB2 
 
 y=(o./sigma(1,2)).^mu(1,2);
@@ -836,7 +836,7 @@ subplot(2,2,2)
 hold on
 ezplot(parampdf,[0,max(o),0,1])
 plot(x,empdist)
-title('CDF empirique et CDF modèle', 'FontSize',8)
+title('CDF empirique et CDF modÃ¨le', 'FontSize',8)
 set(gca, 'FontName', 'Arial')
 set(gca, 'FontSize', 8)
 ylabel('probability')
@@ -974,10 +974,10 @@ pause(0.05);  % This needs to be done for transparency to work
 br1.Face.ColorType = 'truecoloralpha';
 br1.Face.ColorData(4) = 255 * 0.3; % Your alpha value is the 0.3
 legend('loi 2')
-title('régime', 'FontSize',10)
+title('rÃ©gime', 'FontSize',10)
 set(gca, 'FontName', 'Arial')
 set(gca, 'FontSize', 8)
-ylabel('Probabilité état')
+ylabel('ProbabilitÃ© Ã©tat')
 xlabel('Temps')
 hold off
 print('figure_3','-djpeg')
