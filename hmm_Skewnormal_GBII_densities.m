@@ -37,31 +37,6 @@ tps(1,1)=1;
 for t = 1:T-1
     tps(t+1,1)=tps(t,1)+1;
 end
-% graf histo1
-%histo
-densite_essai=(@(x)(0.5* ESN(x,mu(1,1),sigma(1,1),p(1,1)))...
-            +0.5*((mu(1,2)*x.^(mu(1,2)*p(1,2)-1))./(sigma(1,2)^(mu(1,2)*p(1,2))*(gamma(p(1,2))*gamma(q)/gamma(p(1,2)+q))*(1+(x/sigma(1,2)).^mu(1,2)).^(p(1,2)+q))));
-
-densgb= densite_essai(o);
-        
-figure;
-title('tentative de param')
-hold on 
-histogram((o),50,'Normalization','pdf');
-scatter((o),(densgb))
-axis([0 inf 0 0.0005])
-hold off
-
-%% 1 er histo
-figure;
-hold on
-art = 25;
-cc = zeros(T,3);
-s_t = scatter(tps,o,art,cc,'filled');
-colorbar
-caxis([0 1])
-drawnow
-hold off
 
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
