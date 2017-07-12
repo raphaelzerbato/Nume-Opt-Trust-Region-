@@ -3,14 +3,14 @@ close all;
 clc;
 
 %% Mise en place
-%%%%% Paramètres initiaux
-% Le modèle estime deux régimes distinct utilisant des lois d'émission
-% Beta généralisée de Type II à chaque régime.
-% 'ar1' est la matrice de transition initiale donnée 
-% 'A,B,P,Q' sont les vecteurs de paramètres initiaux choisit
-%'pi'est la probabilité initiale régime 1 ou régime 2 
-% maxit est le nombre d'itérations souhaité pour le modèle
-% o est le vecteur de données desquelles sont estimés les régimes
+%%%%% ParamÃ¨tres initiaux
+% Le modÃ¨le estime deux rÃ©gimes distinct utilisant des lois d'Ã©mission
+% Beta gÃ©nÃ©ralisÃ©e de Type II Ã  chaque rÃ©gime.
+% 'ar1' est la matrice de transition initiale donnÃ©e 
+% 'A,B,P,Q' sont les vecteurs de paramÃ¨tres initiaux choisit
+%'pi'est la probabilitÃ© initiale rÃ©gime 1 ou rÃ©gime 2 
+% maxit est le nombre d'itÃ©rations souhaitÃ© pour le modÃ¨le
+% o est le vecteur de donnÃ©es desquelles sont estimÃ©s les rÃ©gimes
 
 ar1 = [0.50,0.50;0.50,0.50];
 
@@ -31,7 +31,7 @@ qini=q;
 
 pi1= [0.5,0.5];
 o= xlsread('tablo time series.xlsx','TIME_SERIES','C2:C151');
-% date = xlsread(C:\Users\inkyiagan\Desktop\code mathlab1\MODEL fonctionel\GB2'tablo 1.xlsm','Fréquence des deux correction','A2:A151');
+% date = xlsread(C:\Users\inkyiagan\Desktop\code mathlab1\MODEL fonctionel\GB2'tablo 1.xlsm','FrÃ©quence des deux correction','A2:A151');
 one = [1;1];
 N=2;
 maxit = 150;
@@ -45,34 +45,6 @@ tps(1,1)=1;
 for t = 1:T-1
     tps(t+1,1)=tps(t,1)+1;
 end
-% graf histo1
-%histo
-densite_essai=(@(x)(0.5*((mu(1,1)*x.^(mu(1,1)*p(1,1)-1))./(sigma(1,1)^(mu(1,1)*p(1,1))*(gamma(p(1,1))*gamma(q(1,1))/gamma(p(1,1)+q(1,1)))*(1+(x/sigma(1,1)).^mu(1,1)).^(p(1,1)+q(1,1))))...
-            +0.5*((mu(1,2)*x.^(mu(1,2)*p(1,2)-1))./(sigma(1,2)^(mu(1,2)*p(1,2))*(gamma(p(1,2))*gamma(q(1,2))/gamma(p(1,2)+q(1,2)))*(1+(x/sigma(1,2)).^mu(1,2)).^(p(1,2)+q(1,2))))));
-
-densgb= densite_essai(o);
-        
-figure_6=figure;
-hold on 
-histogram((o),150,'Normalization','pdf');
-%scatter((o),(densgb))
-title('histograme somme pertes mensuelles')
-axis([0 inf 0 0.006])
-ylabel('Densité')
-xlabel('Observation')
-hold off
-print('figure_6','-djpeg')
-print ('figure_6','-dpdf','-r600')
-%% 1 er histo
-figure;
-hold on
-art = 25;
-cc = zeros(T,3);
-s_t = scatter(tps,o,art,cc,'filled');
-colorbar
-caxis([0 1])
-drawnow
-hold off
 
 %% 1 er pass
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -253,7 +225,7 @@ set(gca, 'FontSize', 8)
 set(gca,'XTick',[]);
 caxis([0 1])
 drawnow
-title('Observations: première itération','FontSize',8)
+title('Observations: premiÃ¨re itÃ©ration','FontSize',8)
 caxis([0 1])
 drawnow
 hold off
@@ -461,7 +433,7 @@ for L= 2:maxit
              set(gca,'XTick',[]);
              caxis([0 1])
              drawnow
-             title('Observations: dernière itération','FontSize',8)
+             title('Observations: derniÃ¨re itÃ©ration','FontSize',8)
              hold off
      end
 end
@@ -488,7 +460,7 @@ hold off
 
 %% graf de verification 
 
-%densité gb2
+%densitÃ© gb2
 a1= xfinal1(1,1);
 b1 =xfinal1(1,2);
 p1= xfinal1(1,3);
@@ -516,7 +488,7 @@ set(gca, 'FontSize', 8)
 ylabel('density')
 xlabel('observation en million')
 hold off
-title('Donnée et densité', 'FontSize', 8)
+title('DonnÃ©e et densitÃ©', 'FontSize', 8)
 
 % graf des densites
 figure(figure_2)
@@ -524,7 +496,7 @@ subplot(2,2,1)
 hold on
 ezplot(@(x)(taille(1,1)*((a1*x.^(a1*p1-1))./(b1^(a1*p1)*(gamma(p1)*gamma(q1)/gamma(p1+q1))*(1+(x/b1).^a1).^(p1+q1)))...
             +taille(2,1)*((a2*x.^(a2*p2-1))./(b2^(a2*p2)*(gamma(p2)*gamma(q2)/gamma(p2+q2))*(1+(x/b2).^a2).^(p2+q2)))),[0,1000,0,0.01]);
-title('Fonction de densité', 'FontSize', 8)
+title('Fonction de densitÃ©', 'FontSize', 8)
 set(gca, 'FontName', 'Arial')
 set(gca, 'FontSize', 8)
 ylabel('density')
@@ -532,7 +504,7 @@ xlabel('observation en million')
 hold off
 
 
-%% influence des PDF Les deux CDF sont comparés   
+%% influence des PDF Les deux CDF sont comparÃ©s   
 
 GB2_1=zeros(T,1);
 for t=1:T
@@ -578,7 +550,7 @@ subplot(2,2,2)
 hold on
 ezplot(parampdf,[0,max(o),0,1])
 plot(x,empdist)
-title('CDF empirique et CDF modèle', 'FontSize',8)
+title('CDF empirique et CDF modÃ¨le', 'FontSize',8)
 set(gca, 'FontName', 'Arial')
 set(gca, 'FontSize', 8)
 ylabel('probability')
@@ -673,11 +645,11 @@ hold on
 plot(t,gammabis2(:,2),'--k')
 hold on
 drawnow; 
-legend('régime 2')
-title('régime', 'FontSize',8)
+legend('rÃ©gime 2')
+title('rÃ©gime', 'FontSize',8)
 set(gca, 'FontName', 'Arial')
 set(gca, 'FontSize', 8)
-ylabel('Probabilité état')
+ylabel('ProbabilitÃ© Ã©tat')
 xlabel('Temps')
 hold off
 print('figure_3','-djpeg')
